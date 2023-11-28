@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { memo, useEffect, useState } from "react";
-import { Marker } from "react-native-maps";
+import { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { defaultStyles } from "../constants/Styles";
 import * as Permission from "expo-permissions";
 import * as Location from "expo-location";
@@ -72,6 +72,7 @@ const ListingsMap = memo(({ listings }: Props) => {
         clusterTextColor="#000"
         clusterFontFamily="mon-sb"
         renderCluster={renderCluster}
+        provider={PROVIDER_GOOGLE}
       >
         {listings.features.map((item: any) => (
           <Marker
@@ -83,7 +84,9 @@ const ListingsMap = memo(({ listings }: Props) => {
             }}
           >
             <View style={styles.marker}>
-              <Text style={styles.markerText}>₹ {item.properties.price*80}</Text>
+              <Text style={styles.markerText}>
+                ₹ {item.properties.price * 80}
+              </Text>
             </View>
           </Marker>
         ))}
